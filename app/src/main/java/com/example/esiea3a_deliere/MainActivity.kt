@@ -18,9 +18,6 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
-
-        val DailyNews = News( "ESIEA Students build a rocket")
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
