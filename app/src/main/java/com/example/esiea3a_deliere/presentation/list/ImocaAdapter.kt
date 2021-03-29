@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.esiea3a_deliere.R
 
-class ImocaAdapter(private var dataSet: List<String>) :
+class ImocaAdapter(private var dataSet: List<Imoca>) :
     RecyclerView.Adapter<ImocaAdapter.ViewHolder>() {
 
     /**
@@ -23,7 +23,7 @@ class ImocaAdapter(private var dataSet: List<String>) :
         }
     }
 
-    fun updateList(list: List<String>){
+    fun updateList(list: List<Imoca>){
         dataSet = list
         notifyDataSetChanged()
     }
@@ -42,7 +42,8 @@ class ImocaAdapter(private var dataSet: List<String>) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.textView.text = dataSet[position]
+        val imoca : Imoca = dataSet[position]
+        viewHolder.textView.text = "Name : "+imoca.name + " Skipper : " +imoca.skipper + " Date of Construction : " + imoca.build
     }
 
     // Return the size of your dataset (invoked by the layout manager)

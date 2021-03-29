@@ -34,11 +34,11 @@ class ImocaListFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
 
-        val ImocaList:ArrayList<String> = arrayListOf<String>().apply{
-            add("L'Occitane en Provence")
-            add("Hugo Boss")
-            add("V and B Mayenne")
-            add("Yes We Cam!")
+        val ImocaList:ArrayList<Imoca> = arrayListOf<Imoca>().apply{
+            add(Imoca("L'Occitane en Provence","Lorem",2019))
+            add(Imoca("Hugo Boss","Lorem Ipsum",2018))
+            add(Imoca("V and B Mayenne","Maxime Sorel",2007))
+            add(Imoca("Yes We Cam!","Jean Le Cam",2017))
         }
 
         adapter.updateList(ImocaList)
