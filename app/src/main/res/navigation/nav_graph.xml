@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/MemeDetailFragment">
+    app:startDestination="@id/MemeListFragment">
 
     <fragment
         android:id="@+id/MemeListFragment"
@@ -17,9 +17,17 @@
     </fragment>
     <fragment
         android:id="@+id/MemeDetailFragment"
-        android:name="com.example.esiea3a_deliere.SecondFragment"
+        android:name="com.example.esiea3a_deliere.presentation.detail.MemeDetailFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_meme_detail">
+        <argument
+            android:name="memeName"
+            android:defaultValue="ERR"
+        />
+        <argument
+            android:name="memeImg"
+            android:defaultValue="ERR"
+         />
 
         <action
             android:id="@+id/navToMemeDetailFragment"

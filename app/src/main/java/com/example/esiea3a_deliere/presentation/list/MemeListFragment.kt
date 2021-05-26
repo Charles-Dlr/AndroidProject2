@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -48,7 +49,7 @@ class MemeListFragment : Fragment() {
 
         memesApi.getMemesList().enqueue(object: Callback<DataResponse>{
             override fun onFailure(call: Call<DataResponse>, t: Throwable) {
-                System.out.println("ah bah zut alors")
+                println("ah bah zut alors")
             }
 
             override fun onResponse(call: Call<DataResponse>, response: Response<DataResponse>) {
@@ -61,6 +62,9 @@ class MemeListFragment : Fragment() {
 
     }
     private fun onClickMeme(meme: Meme) {
-        findNavController().navigate(R.id.navToMemeDetailFragment)
+        findNavController().navigate(R.id.navToMemeDetailFragment, bundleOf(
+                "memeName" to meme.name,
+                "memeImg" to meme.url
+        ))
     }
 }
