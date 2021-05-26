@@ -1,5 +1,6 @@
 package com.example.esiea3a_deliere.presentation.list
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,12 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.esiea3a_deliere.R
+import com.example.esiea3a_deliere.presentation.Singletons.Companion.memesApi
 import com.example.esiea3a_deliere.presentation.api.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -41,26 +41,25 @@ class MemeListFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
 
-        val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.imgflip.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        val memesApi: MemesApi = retrofit.create(MemesApi::class.java)
+        callApi()
+    }
 
-        memesApi.getMemesList().enqueue(object: Callback<DataResponse>{
+    private fun callApi() {
+
+        memesApi.getMemesList().enqueue(object : Callback<DataResponse> {
             override fun onFailure(call: Call<DataResponse>, t: Throwable) {
-                println("ah bah zut alors")
+                TODO("Not yet implemented")
             }
 
             override fun onResponse(call: Call<DataResponse>, response: Response<DataResponse>) {
-                if (response.isSuccessful && response.body() != null){
-                    val memeResponse= response.body()!!
+                if (response.isSuccessful && response.body() != null) {
+                    val memeResponse = response.body()!!
                     adapter.updateList(memeResponse.data.memes)
                 }
             }
         })
-
     }
+
     private fun onClickMeme(meme: Meme) {
         findNavController().navigate(R.id.navToMemeDetailFragment, bundleOf(
                 "memeName" to meme.name,
