@@ -41,10 +41,10 @@ class MemeDetailFragment : Fragment() {
             findNavController().navigate(R.id.navToMemeDetailFragment)
         }
         val memeName: String? = arguments?.getString("memeName");
-        val memeImg: String? = arguments?.getString("memeImg");
+        val memeUrl: String? = arguments?.getString("memeImg");
 
         textViewName.text = memeName
-        Picasso.get().load(memeImg).into(imageView)
+        Picasso.get().load(memeUrl).into(imageView)
     }
 
 }
